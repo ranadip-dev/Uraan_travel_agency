@@ -50,7 +50,7 @@ $packages = $stmt->fetchAll();
                         View Details
                     </a>
 
-                    <a href="booking/create.php?package_id=<?php echo $package['id']; ?>" class="btn">
+                    <a href="book-package.php?package_id=<?= (int) $package['id'] ?>" class="btn">
                         Book Now
                     </a>
                 </div>

@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 include 'includes/header.php';
 include 'config/database.php';
 require_once 'config/database.php';
@@ -50,8 +49,8 @@ if(!$package){
     <p><?php echo nl2br(htmlspecialchars($package['description'])); ?></p>
 
     <div class="detail-actions">
-        <a href="booking/create.php?package_id=<?php echo $package['id']; ?>" class="btn">
-            Book This Package
+        <a href="book-package.php?package_id=<?= (int) $package['id'] ?>" class="btn">
+            Book Now
         </a>
 
         <a href="packages.php" class="btn btn-outline">
