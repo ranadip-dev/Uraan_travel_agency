@@ -1,4 +1,12 @@
-<?php include 'includes/header.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uraan Travel Agency</title>
+</head>
+<body>
+    <?php include 'includes/header.php'; ?>
 
 <section class="home">
     <div class="swiper home-slider">
@@ -18,6 +26,15 @@
                 <div class="content">
                     <span>Make Your Tour Worthwhile</span>
                     <h3>Discover New Places</h3>
+                    <a href="packages.php" class="btn">Discover More</a>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide"
+                 style="background:url(assets/images/slide3.jpg) no-repeat">
+                <div class="content">
+                    <span>Take Only Memories, Leave Only Footprints</span>
+                    <h3>Let's Find Some Beautiful Places To Get Lost !</h3>
                     <a href="packages.php" class="btn">Discover More</a>
                 </div>
             </div>
@@ -115,3 +132,5 @@
 </section>
 
 <?php include 'includes/footer.php'; ?>
+</body>
+</html>

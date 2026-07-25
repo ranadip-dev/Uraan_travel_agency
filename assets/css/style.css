@@ -129,6 +129,15 @@ img{
     color:var(--text);
     position:relative;
     transition:var(--transition);
+
+    display:inline-block;
+    color:#983cd5;
+    margin-bottom:1.5rem;
+    padding:1rem 1rem;
+    background:rgba(176, 219, 225, 0.15);
+    border:1px solid rgba(105, 124, 124, 0.2);
+    border-radius:10rem;
+    backdrop-filter:blur(1px);
 }
 
 .navbar a::after{
