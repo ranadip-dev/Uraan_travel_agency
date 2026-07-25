@@ -1,7 +1,7 @@
 <?php
 include 'includes/header.php';
-include 'config/database.php';
-
+require_once 'config/database.php';
+require_once 'includes/functions.php';
 $stmt = $pdo->query("SELECT * FROM packages WHERE status = 'active' ORDER BY created_at DESC");
 $packages = $stmt->fetchAll();
 ?>

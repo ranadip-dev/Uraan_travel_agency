@@ -6,7 +6,8 @@
     <title>Uraan Travel Agency</title>
 </head>
 <body>
-    <?php include 'includes/header.php'; ?>
+    <?php 
+    include 'includes/header.php'; ?>
 
 <section class="home">
     <div class="swiper home-slider">

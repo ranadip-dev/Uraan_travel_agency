@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 include 'includes/header.php';
 include 'config/database.php';
+require_once 'config/database.php';
+require_once 'includes/functions.php';
 
 if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
     header('Location: packages.php');

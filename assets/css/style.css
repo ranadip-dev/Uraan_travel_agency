@@ -131,7 +131,7 @@ img{
     transition:var(--transition);
 
     display:inline-block;
-    color:#983cd5;
+    color:#333238;
     margin-bottom:1.5rem;
     padding:1rem 1rem;
     background:rgba(176, 219, 225, 0.15);

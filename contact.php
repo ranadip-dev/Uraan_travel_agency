@@ -1,4 +1,7 @@
 <?php include 'includes/header.php'; ?>
+<?php
+require_once 'includes/functions.php';
+?>
 
 <div class="heading" style="background:url(assets/images/contact-bg.jpg) no-repeat;">
     <h1>Contact Us</h1>
