@@ -80,6 +80,10 @@ if (isset($_GET['cancel'])) {
         <strong><?= e($_SESSION['full_name']) ?></strong>
     </p>
 
+    <p>
+        <a href="profile.php">My Profile</a>
+    </p>
+
     <?php if (isset($_GET['booking']) && $_GET['booking'] === 'success'); ?>
     <p style="color: green;">
         Your booking has been submitted successfully.
