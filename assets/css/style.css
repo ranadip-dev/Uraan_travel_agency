@@ -8,7 +8,7 @@
     --text:#334155;
     --text-light:#64748b;
     --white:#ffffff;
-    --light:#f8fafc;
+    --light:#cad6e1;
     --border:#e2e8f0;
     --shadow:0 10px 30px rgba(15,23,42,.08);
     --shadow-hover:0 20px 40px rgba(15,23,42,.12);
@@ -398,6 +398,7 @@ img{
     grid-template-columns:repeat(auto-fit,minmax(25rem,1fr));
     gap:4rem;
     margin-bottom:4rem;
+    align-items: center;
 }
 
 .footer .box h3{
