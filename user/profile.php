@@ -119,6 +119,10 @@ if (isset($_GET['updated'])) {
         Update Profile
     </button>
 
+    <p>
+        <a href="change-password.php"> Change Password </a>
+    </p>
+
 </form>
 
 <br>

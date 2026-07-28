@@ -405,6 +405,7 @@ img{
     font-size:2.2rem;
     color:var(--white);
     margin-bottom:2rem;
+    align-items: center;
 }
 
 .footer .box a,
@@ -414,6 +415,7 @@ img{
     color:#cbd5e1;
     margin-bottom:1.2rem;
     transition:var(--transition);
+    align-items: center;
 }
 
 .footer .box a:hover{
@@ -889,4 +891,26 @@ img{
     .package-details{
         grid-template-columns:1fr;
     }
+}
+
+/* Passwords */
+
+.password-field {
+    position: relative;
+    display: inline-block;
+}
+
+.password-field input {
+    padding-right: 42px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
 }
