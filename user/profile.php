@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once '../config/database.php';
 require_once '../includes/functions.php';
 require_once '../includes/auth.php';
@@ -12,34 +14,47 @@ if (($_SESSION['role'] ?? '') !== 'user') {
     redirect('../auth/login.php');
 }
 
+
 if (isset($_POST['update_profile'])) {
 
-    $fullName = trim($_POST['full_name']);
-    $phone = trim($_POST['phone']);
+    $fullName = trim($_POST['full_name'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
 
-    $updateStatement = $pdo->prepare(
-    "UPDATE users
-     SET
-        full_name = :full_name,
-        phone = :phone
-     WHERE id = :id"
-);
+    if ($fullName !== '') {
 
-    $updateStatement->execute([
-    'full_name' => $fullName,
-    'phone'     => $phone,
-    'id'        => $_SESSION['user_id']
-]);
-header('Location: profile.php?updated=1');
-exit;
+        $updateStatement = $pdo->prepare(
+            "UPDATE users
+             SET
+                full_name = :full_name,
+                phone = :phone
+             WHERE id = :id"
+        );
+
+        $updateStatement->execute([
+            'full_name' => $fullName,
+            'phone' => $phone,
+            'id' => $_SESSION['user_id']
+        ]);
+
+        $_SESSION['full_name'] = $fullName;
+
+        header('Location: profile.php?updated=1');
+        exit;
+    }
 }
 
-$statement = $pdo->prepare("
-    SELECT id, full_name, email, phone, created_at
-    FROM users
-    WHERE id = :id
-    LIMIT 1
-");
+
+$statement = $pdo->prepare(
+    "SELECT
+        id,
+        full_name,
+        email,
+        phone,
+        created_at
+     FROM users
+     WHERE id = :id
+     LIMIT 1"
+);
 
 $statement->execute([
     'id' => $_SESSION['user_id']
@@ -54,80 +69,163 @@ if (!$user) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>My Profile</title>
+
+    <link
+        rel="stylesheet"
+        href="../assets/css/style.css"
+    >
+
 </head>
 
 <body>
 
-<h2>My Profile</h2>
+<div class="dashboard-container">
 
-<?php
+    <div class="dashboard-header">
 
-if (isset($_GET['updated'])) {
+        <div>
 
-?>
+            <h2>My Profile</h2>
 
-<p style="color: green; font-weight: bold;">
-    ✅ Profile updated successfully.
-</p>
+            <p>
+                Manage your personal information.
+            </p>
 
-<?php
+        </div>
 
-}
+        <div class="dashboard-actions">
 
-?>
+            <a
+                href="dashboard.php"
+                class="dashboard-btn"
+            >
+                Dashboard
+            </a>
 
-<hr>
+            <a
+                href="../index.php"
+                class="dashboard-btn"
+            >
+                Home
+            </a>
 
-<form method="POST">
+        </div>
 
-    <label>Full Name</label><br>
-    <input
-        type="text"
-        name="full_name"
-        value="<?= e($user['full_name']) ?>"
-        required
-    >
+    </div>
 
-    <br><br>
 
-    <label>Email</label><br>
-    <input
-        type="email"
-        value="<?= e($user['email']) ?>"
-        readonly
-    >
+    <?php if (isset($_GET['updated'])) { ?>
 
-    <br><br>
+        <div class="success-message" style="font-weight:">
+            Profile updated successfully.
+        </div>
 
-    <label>Phone</label><br>
-    <input
-        type="text"
-        name="phone"
-        value="<?= e($user['phone']) ?>"
-    >
+    <?php } ?>
 
-    <br><br>
-    <p><strong>Member Since:</strong> <?= e($user['created_at']) ?></p>
 
-    <br><br>
+    <div class="dashboard-section profile-section">
 
-    <button type="submit" name="update_profile">
-        Update Profile
-    </button>
+        <form method="POST" class="profile-form">
 
-    <p>
-        <a href="change-password.php"> Change Password </a>
-    </p>
+            <div class="form-group">
 
-</form>
+                <label for="full_name">
+                    Full Name
+                </label>
 
-<br>
+                <input
+                    type="text"
+                    id="full_name"
+                    name="full_name"
+                    value="<?= e($user['full_name']) ?>"
+                    required
+                >
 
-<a href="dashboard.php">← Back to Dashboard</a>
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    value="<?= e($user['email']) ?>"
+                    readonly
+                >
+
+                <small>
+                    Email cannot be changed.
+                </small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone
+                </label>
+
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    value="<?= e($user['phone'] ?? '') ?>"
+                >
+
+            </div>
+
+
+            <div class="profile-meta">
+
+                <strong>Member Since:</strong>
+
+                <?= e($user['created_at']) ?>
+
+            </div>
+
+
+            <div class="profile-actions">
+
+                <button
+                    type="submit"
+                    name="update_profile"
+                    class="primary-btn"
+                >
+                    Update Profile
+                </button>
+
+                <a
+                    href="change-password.php"
+                    class="secondary-btn"
+                >
+                    Change Password
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 </body>
+
 </html>

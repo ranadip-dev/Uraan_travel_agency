@@ -5,7 +5,7 @@ document.querySelectorAll('.password-toggle').forEach(function (button) {
 
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
-            this.textContent = 'Hide';
+            this.textContent = '👁️‍🗨️';
         } else {
             passwordInput.type = 'password';
             this.textContent = '👁';

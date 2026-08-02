@@ -14,24 +14,8 @@ if (($_SESSION['role'] ?? '') !== 'user') {
     redirect('../auth/login.php');
 }
 
-$bookingStatement = $pdo->prepare(
-    "SELECT bookings.id, packages.title, bookings.travel_date, bookings.persons, bookings.booking_status, bookings.created_at
-    FROM bookings
-    INNER JOIN packages
-    ON bookings.package_id = packages.id
-    Where bookings.user_id = :user_id
-    ORDER BY bookings.created_at DESC"
-);
 
-$bookingStatement->execute([
-    'user_id' => $_SESSION['user_id']
-]);
-
-$bookings = $bookingStatement->fetchAll();
-
-echo '<pre>';
-print_r($bookings);
-echo '</pre>';
+/* Cancel Book */
 
 if (isset($_GET['cancel'])) {
 
@@ -53,12 +37,38 @@ if (isset($_GET['cancel'])) {
     header('Location: dashboard.php');
     exit;
 }
+
+
+/* fetch user bookking*/ 
+
+$bookingStatement = $pdo->prepare(
+    "SELECT
+        bookings.id,
+        packages.title,
+        bookings.travel_date,
+        bookings.persons,
+        bookings.booking_status,
+        bookings.created_at
+    FROM bookings
+    INNER JOIN packages
+        ON bookings.package_id = packages.id
+    WHERE bookings.user_id = :user_id
+    ORDER BY bookings.created_at DESC"
+);
+
+$bookingStatement->execute([
+    'user_id' => $_SESSION['user_id']
+]);
+
+$bookings = $bookingStatement->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -68,119 +78,193 @@ if (isset($_GET['cancel'])) {
 
     <title>User Dashboard</title>
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link
+        rel="stylesheet"
+        href="../assets/css/style.css"
+    >
+
 </head>
 
 <body>
 
-    <h2>User Dashboard</h2>
+<div class="dashboard-container">
 
-    <p>
-        Welcome,
-        <strong><?= e($_SESSION['full_name']) ?></strong>
-    </p>
+    <div class="dashboard-header">
 
-    <p>
-        <a href="profile.php">My Profile</a>
-    </p>
+        <div>
 
-    <?php if (isset($_GET['booking']) && $_GET['booking'] === 'success'); ?>
-    <p style="color: green;">
-        Your booking has been submitted successfully.
-    </p>
+            <h2>User Dashboard</h2>
 
-    <p>
-        Email:
-        <?= e($_SESSION['email']) ?>
-    </p>
+            <p>
+                Welcome,
+                <strong><?= e($_SESSION['full_name']) ?></strong>
+            </p>
 
-    <hr>
-    <h3>My bookings</h3>
+            <p class="dashboard-email">
+                <?= e($_SESSION['email']) ?>
+            </p>
+
+        </div>
+
+        <div class="dashboard-actions">
+
+            <a
+                href="profile.php"
+                class="dashboard-btn"
+            >
+                My Profile
+            </a>
+
+            <a
+                href="../index.php"
+                class="dashboard-btn"
+            >
+                Home
+            </a>
+
+            <a
+                href="../auth/logout.php"
+                class="dashboard-btn logout-btn"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
     <?php
-    if (empty($bookings)){
+    if (
+        isset($_GET['booking']) &&
+        $_GET['booking'] === 'success'
+    ) {
     ?>
-    <p>No booking found.</p>
-    <?php
-    } else {
-    ?>
-    <table border="1" cellpadding="10" cellspaceing="0">
-        <tr>
-            <th>Package</th>
-            <th>Travel Date</th>
-            <th>Persons</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        <?php
-        foreach ($bookings as $booking) {
-        ?>
 
-        <tr>
-            <td><?= e($booking['title']) ?></td>
-            <td><?= e($booking['travel_date']) ?></td>
-            <td><?= e((string)$booking['persons']) ?></td>
-    
-            <td>
-                <?php
-                $status = strtolower($booking['booking_status']);
-                if ($status == 'pending'){
-                ?>
-                <span style="color:yellow; font-weight:bold;">
-                    🟡 Pending
-                </span>
-                <?php
-                } elseif($status == 'confirmed'){
-                    ?>
-                    <span style="coloe:green; font-waight:bold;">
-                        🟢 Confirmed
-                    </span>
-                    <?php
-                } elseif($status == 'cancelled'){
-                    ?>
-                    <span style="color:red; font-waight:bold;">
-                        🔴 Cancelled
-                    </span>
-                    <?php
-                } else {
-                    ?>
-                    <?= e($booking['booking_status']) ?>
-                    <?php
-                    }
-                    ?>
-            </td>
+        <div class="success-message">
+            Your booking has been submitted successfully.
+        </div>
 
-            <td>
-                <?php
-                $status = strtolower($booking['booking_status']);
-                if ($status === 'pending') {
-                    ?>
-                    <a href="?cancel=<?= $booking['id'] ?>"
-                    onclick="return confirm('Are you sure you want to cancel this booking?');">Cancel Booking</a>
-                    <?php
-                    } else {
-                        ?>
-                        -
-                        <?php
-                        }
-                        ?>
-                        </td>
-            
-        </tr>
-        <?php
-        }
-        ?>
-    </table>
     <?php
     }
     ?>
 
-    <p>
-        <a href="../index.php" >Go to Home</a>
-    </p>
 
-    <p>
-        <a href="../auth/logout.php">Logout</a>
-    </p>
+    <div class="dashboard-section">
+
+        <h3>My Bookings</h3>
+
+        <?php if (empty($bookings)) { ?>
+
+            <div class="empty-message">
+                No bookings found.
+            </div>
+
+        <?php } else { ?>
+
+            <div class="table-responsive">
+
+                <table class="dashboard-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Package</th>
+                            <th>Travel Date</th>
+                            <th>Persons</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <?php
+                    foreach ($bookings as $booking) {
+
+                        $status = strtolower(
+                            $booking['booking_status']
+                        );
+                    ?>
+
+                        <tr>
+
+                            <td>
+                                <?= e($booking['title']) ?>
+                            </td>
+
+                            <td>
+                                <?= e($booking['travel_date']) ?>
+                            </td>
+
+                            <td>
+                                <?= e($booking['persons']) ?>
+                            </td>
+
+                            <td>
+
+                                <?php if ($status === 'pending') { ?>
+
+                                    <span class="status status-pending">
+                                        Pending
+                                    </span>
+
+                                <?php } elseif ($status === 'confirmed') { ?>
+
+                                    <span class="status status-confirmed">
+                                        Confirmed
+                                    </span>
+
+                                <?php } elseif ($status === 'cancelled') { ?>
+
+                                    <span class="status status-cancelled">
+                                        Cancelled
+                                    </span>
+
+                                <?php } else { ?>
+
+                                    <?= e($booking['booking_status']) ?>
+
+                                <?php } ?>
+
+                            </td>
+
+                            <td>
+
+                                <?php if ($status === 'pending') { ?>
+
+                                    <a
+                                        href="?cancel=<?= (int) $booking['id'] ?>"
+                                        class="cancel-booking"
+                                        onclick="return confirm('Are you sure you want to cancel this booking?');"
+                                    >
+                                        Cancel
+                                    </a>
+
+                                <?php } else { ?>
+
+                                    <span class="no-action">—</span>
+
+                                <?php } ?>
+
+                            </td>
+
+                        </tr>
+
+                    <?php } ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        <?php } ?>
+
+    </div>
+
+</div>
 
 </body>
 
