@@ -165,9 +165,7 @@ $enquiries = $statement->fetchAll(PDO::FETCH_ASSOC);
 
                             <td>
 
-                                <a href="view-enquiry.php?id=<?= (int) $enquiry['id'] ?>">
-                                    View
-                                </a>
+                                <a href="view-enquiry.php?id=<?= (int) $enquiry['id'] ?>">View</a>
 
                             </td>
 

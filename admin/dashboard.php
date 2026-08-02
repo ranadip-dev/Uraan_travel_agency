@@ -13,6 +13,58 @@ if (!isset($_SESSION['user_id'])) {
 if (($_SESSION['role'] ?? '') !== 'admin') {
     redirect('../user/dashboard.php');
 }
+
+// Total Users
+$userCountStatement = $pdo->query(
+    "SELECT COUNT(*) FROM users WHERE role = 'user'"
+);
+
+$totalUsers = (int) $userCountStatement->fetchColumn();
+
+
+// Total Packages
+$packageCountStatement = $pdo->query(
+    "SELECT COUNT(*) FROM packages"
+);
+
+$totalPackages = (int) $packageCountStatement->fetchColumn();
+
+
+// Total Bookings
+$bookingCountStatement = $pdo->query(
+    "SELECT COUNT(*) FROM bookings"
+);
+
+$totalBookings = (int) $bookingCountStatement->fetchColumn();
+
+
+// Pending Bookings
+$pendingBookingStatement = $pdo->prepare(
+    "SELECT COUNT(*)
+     FROM bookings
+     WHERE booking_status = :status"
+);
+
+$pendingBookingStatement->execute([
+    'status' => 'Pending'
+]);
+
+$pendingBookings = (int) $pendingBookingStatement->fetchColumn();
+
+
+// New Enquiries
+$enquiryCountStatement = $pdo->prepare(
+    "SELECT COUNT(*)
+     FROM enquiries
+     WHERE status = :status"
+);
+
+$enquiryCountStatement->execute([
+    'status' => 'New'
+]);
+
+$newEnquiries = (int) $enquiryCountStatement->fetchColumn();
+
 ?>
 
 <!DOCTYPE html>
@@ -43,17 +95,50 @@ if (($_SESSION['role'] ?? '') !== 'admin') {
         <strong><?= e($_SESSION['full_name']) ?></strong>
     </p>
 
-    <p>
-        <a href="enquiries.php">
-            Manage Enquiries
-        </a>
-    </p>
+    <section class="admin-stats">
 
-    <p>
-        <a href="../index.php">
+    <div class="stat-box">
+        <h3><?= $totalUsers ?></h3>
+        <p>Users</p>
+    </div>
+
+    <div class="stat-box">
+        <h3><?= $totalPackages ?></h3>
+        <p>Packages</p>
+    </div>
+
+    <div class="stat-box">
+        <h3><?= $totalBookings ?></h3>
+        <p>Total Bookings</p>
+    </div>
+
+    <div class="stat-box">
+        <h3><?= $pendingBookings ?></h3>
+        <p>Pending Bookings</p>
+    </div>
+
+    <div class="stat-box">
+        <h3><?= $newEnquiries ?></h3>
+        <p>New Enquiries</p>
+    </div>
+
+    <section class="admin-links">
+
+    <a href="bookings.php">Manage Bookings</a>
+
+    <a href="packages.php">Manage Packages</a>
+
+    <a href="users.php">Manage Users</a>
+
+    <a href="enquiries.php">Manage Enquiries</a>
+
+    <a href="../index.php">
             View Website
         </a>
-    </p>
+
+</section>
+
+</section>
 
     <p>
         <a href="../auth/logout.php">
