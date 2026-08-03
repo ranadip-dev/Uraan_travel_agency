@@ -1244,3 +1244,40 @@ img{
 .error-message p {
     margin: 4px 0;
 }
+
+/* Admin Dashboard */
+.admin-stats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.stat-box{
+    flex:1;
+    min-width:180px;
+    padding:20px;
+    text-align:center;
+    border:1px solid #ddd;
+    border-radius:8px;
+    background:#fff;
+}
+
+.stat-box h3{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.admin-links.a{
+    display: inline-block;
+    padding: 9px 16px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.admin-links:hover {
+    background: #3a56b3;
+    color: #fff;
+}
