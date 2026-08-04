@@ -99,7 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-    <h2>Create Your Account</h2>
+    <div class=""dashboard-container>
+        <div class="dashboard-header">
+            <h2>Create Your Account</h2>
 
     <?php
     if (!empty($errors)) {
@@ -112,8 +114,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "</ul>";
     }
     ?>
+        </div>
 
-    <form action="" method="POST">
+        <div class="dashboard-section profile-section">
+    <div class=""form-group>
+            <form action="" method="POST">
 
         <label>Full Name</label><br>
         <input
@@ -158,11 +163,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <br><br>
 
-        <button type="submit">
+        <button type="submit" class="primary-btn">
             Register
         </button>
 
     </form>
+
+    </div>
+</div>
+
+    </div>
+
 
 </body>
 

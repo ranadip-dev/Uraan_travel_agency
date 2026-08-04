@@ -96,7 +96,7 @@ $booking = $statement->fetch();
 if (!$booking) {
     exit('Booking not found.');
 }
-
+$status = strtolower($booking['booking_status']);
 ?>
 
 <!DOCTYPE html>
@@ -108,161 +108,224 @@ if (!$booking) {
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+        content="width=device-width, initial-scale=1.0">
 
     <title>Booking Details</title>
 
     <link
         rel="stylesheet"
-        href="../assets/css/style.css"
-    >
+        href="../assets/css/style.css">
 
 </head>
 
 <body>
 
-<section style="padding:30px;">
+<div class="dashboard-container">
 
-    <h2>Booking Details</h2>
+    <div class="dashboard-header">
 
-    <?php
+        <div>
 
-    if (isset($_GET['updated'])) {
+            <h2>Booking Details</h2>
 
-    ?>
+            <p>
+                Booking #<?= e($booking['id']) ?>
+            </p>
 
-        <p style="color:green;font-weight:bold;">
+        </div>
+
+        <div class="dashboard-actions">
+
+            <a
+                href="bookings.php"
+                class="dashboard-btn"
+            >
+                Back to Bookings
+            </a>
+
+            <a
+                href="dashboard.php"
+                class="dashboard-btn"
+            >
+                Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <?php if (isset($_GET['updated'])) { ?>
+
+        <div class="success-message">
             Booking status updated successfully.
-        </p>
+        </div>
 
-    <?php
-
-    }
-
-    ?>
-
-    <hr>
-
-    <h3>Customer</h3>
-
-    <p>
-        <strong>Name:</strong>
-        <?= e($booking['full_name']) ?>
-    </p>
-
-    <p>
-        <strong>Email:</strong>
-        <?= e($booking['email']) ?>
-    </p>
-
-    <p>
-        <strong>Phone:</strong>
-        <?= e($booking['phone'] ?? '') ?>
-    </p>
+    <?php } ?>
 
 
-    <h3>Package</h3>
+    <div class="booking-details-grid">
 
-    <p>
-        <strong>Package:</strong>
-        <?= e($booking['package_title']) ?>
-    </p>
+        <div class="dashboard-section">
 
-    <p>
-        <strong>Location:</strong>
-        <?= e($booking['location']) ?>
-    </p>
+            <h3>Customer Information</h3>
 
-    <p>
-        <strong>Duration:</strong>
-        <?= e($booking['duration_days']) ?> Days
-    </p>
+            <div class="detail-row">
+                <span>Name</span>
+                <strong><?= e($booking['full_name']) ?></strong>
+            </div>
 
-    <p>
-        <strong>Price:</strong>
-        ₹<?= number_format((float) $booking['price'], 2) ?>
-    </p>
+            <div class="detail-row">
+                <span>Email</span>
+                <strong><?= e($booking['email']) ?></strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Phone</span>
+                <strong><?= e($booking['phone'] ?? '') ?></strong>
+            </div>
+
+        </div>
 
 
-    <h3>Booking</h3>
+        <div class="dashboard-section">
 
-    <p>
-        <strong>Travel Date:</strong>
-        <?= e($booking['travel_date']) ?>
-    </p>
+            <h3>Package Information</h3>
 
-    <p>
-        <strong>Persons:</strong>
-        <?= e($booking['persons']) ?>
-    </p>
+            <div class="detail-row">
+                <span>Package</span>
+                <strong><?= e($booking['package_title']) ?></strong>
+            </div>
 
-    <p>
-        <strong>Current Status:</strong>
-        <?= e($booking['booking_status']) ?>
-    </p>
+            <div class="detail-row">
+                <span>Location</span>
+                <strong><?= e($booking['location']) ?></strong>
+            </div>
 
-    <p>
-        <strong>Booked On:</strong>
-        <?= e($booking['created_at']) ?>
-    </p>
+            <div class="detail-row">
+                <span>Duration</span>
+                <strong>
+                    <?= e($booking['duration_days']) ?> Days
+                </strong>
+            </div>
 
-    <hr>
+            <div class="detail-row">
+                <span>Price</span>
+                <strong>
+                    ₹<?= number_format((float) $booking['price'], 2) ?>
+                </strong>
+            </div>
 
-    <h3>Update Booking Status</h3>
+        </div>
 
-    <form method="POST">
+    </div>
 
-        <select
-            name="booking_status"
-            required
-        >
 
-            <option
-                value="Pending"
-                <?= $booking['booking_status'] === 'Pending'
-                    ? 'selected'
-                    : '' ?>
-            >
-                Pending
-            </option>
+    <div class="dashboard-section booking-summary">
 
-            <option
-                value="Confirmed"
-                <?= $booking['booking_status'] === 'Confirmed'
-                    ? 'selected'
-                    : '' ?>
-            >
-                Confirmed
-            </option>
+        <h3>Booking Information</h3>
 
-            <option
-                value="Cancelled"
-                <?= $booking['booking_status'] === 'Cancelled'
-                    ? 'selected'
-                    : '' ?>
-            >
-                Cancelled
-            </option>
+        <div class="detail-row">
+            <span>Travel Date</span>
+            <strong><?= e($booking['travel_date']) ?></strong>
+        </div>
 
-        </select>
+        <div class="detail-row">
+            <span>Persons</span>
+            <strong><?= e($booking['persons']) ?></strong>
+        </div>
 
-        <button
-            type="submit"
-            name="update_status"
-        >
-            Update Status
-        </button>
+        <div class="detail-row">
 
-    </form>
+            <span>Status</span>
 
-    <br>
+            <?php if ($status === 'pending') { ?>
 
-    <a href="bookings.php">
-         Back to Bookings
-    </a>
+                <span class="status status-pending">
+                    Pending
+                </span>
 
-</section>
+            <?php } elseif ($status === 'confirmed') { ?>
+
+                <span class="status status-confirmed">
+                    Confirmed
+                </span>
+
+            <?php } elseif ($status === 'cancelled') { ?>
+
+                <span class="status status-cancelled">
+                    Cancelled
+                </span>
+
+            <?php } else { ?>
+
+                <strong>
+                    <?= e($booking['booking_status']) ?>
+                </strong>
+
+            <?php } ?>
+
+        </div>
+
+        <div class="detail-row">
+            <span>Booked On</span>
+            <strong><?= e($booking['created_at']) ?></strong>
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-section status-update-section">
+
+        <h3>Update Booking Status</h3>
+
+        <form
+            method="POST"
+            class="status-form">
+
+            <select
+                name="booking_status"
+                required>
+
+                <option
+                    value="Pending"
+                    <?= $booking['booking_status'] === 'Pending'
+                        ? 'selected'
+                        : '' ?>>
+                    Pending
+                </option>
+
+                <option
+                    value="Confirmed"
+                    <?= $booking['booking_status'] === 'Confirmed'
+                        ? 'selected'
+                        : '' ?>>
+                    Confirmed
+                </option>
+
+                <option
+                    value="Cancelled"
+                    <?= $booking['booking_status'] === 'Cancelled'
+                        ? 'selected'
+                        : '' ?>>
+                    Cancelled
+                </option>
+
+            </select>
+
+            <button
+                type="submit"
+                name="update_status"
+                class="primary-btn">
+                Update Status
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
 
 </body>
 

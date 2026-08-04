@@ -122,31 +122,22 @@ $newEnquiries = (int) $enquiryCountStatement->fetchColumn();
         <p>New Enquiries</p>
     </div>
 
-    <div class="admin-links">
+    <div class="dashboard-actions">
 
-        <a href="bookings.php">Manage Bookings</a>
+        <a href="bookings.php" class="dashboard-opt">Manage Bookings</a>
 
-        <a href="packages.php">Manage Packages</a>
+        <a href="packages.php" class="dashboard-opt">Manage Packages</a>
 
-        <a href="users.php">Manage Users</a>
+        <a href="users.php" class="dashboard-opt">Manage Users</a>
 
-        <a href="enquiries.php">Manage Enquiries</a>
+        <a href="enquiries.php" class="dashboard-opt">Manage Enquiries</a>
 
-    </div>
 
-        <div class="dashboard-actions">
-
-        <a
-            href="../index.php"
-            class="dashboard-btn"
-        >
+        <a href="../index.php" class="dashboard-btn">
             View Website
         </a>
 
-        <a
-            href="../auth/logout.php"
-            class="dashboard-btn logout-btn"
-        >
+        <a href="../auth/logout.php" class="dashboard-btn logout-btn">
             Logout
         </a>
 

@@ -79,6 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <div class="dashboard-container">
+    <div class="dashboard-header">
 
     <h2>Login to Your Account</h2>
 
@@ -95,28 +97,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
+    </div>
 
-    <form action="" method="POST">
+    <div class="dashboard-section profile-section">
+            <form action="" method="POST">
 
-        <label for="email">Email</label><br>
+        <div class="form-group">
+            <label for="email">Email</label><br>
         <input type="email" id="email" name="email" value="<?= e($email) ?>" required>
 
         <br><br>
 
         <label for="password">Password</label><br>
-        <input type="password" id="password" name="password" required>
+        <div class="password-field">
+             <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required>
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="password"
+                        aria-label="Show password">
+                        👁
+                    </button>
+        </div>
 
         <br><br>
 
-        <button type="submit">Login</button>
+        <button type="submit" class="primary-btn">Login</button>
+        </div>
+
 
     </form>
 
     <p>
         Don't have an account?
         <a href="register.php">Register here</a>
-    </p>
+            </p>
+            <script src="../assets/js/app.js"></script>
 
+    </div>
 </body>
 
 </html>

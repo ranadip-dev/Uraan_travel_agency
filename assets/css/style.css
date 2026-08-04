@@ -976,6 +976,7 @@ img{
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    align-content: safe;
 }
 
 .dashboard-btn {
@@ -1027,7 +1028,8 @@ img{
 .dashboard-table td {
     padding: 13px 15px;
     border-bottom: 1px solid #e5e5e5;
-    text-align: left;
+    text-align:center;
+    align-items: center;
 }
 
 .dashboard-table th {
@@ -1042,14 +1044,14 @@ img{
 .status {
     display: inline-block;
     padding: 5px 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 13px;
     font-weight: 600;
 }
 
 .status-pending {
-    background: #fff4cc;
-    color: #8a6700;
+    background: #fcf4d7;
+    color: #b3a701;
 }
 
 .status-confirmed {
@@ -1268,16 +1270,79 @@ img{
     margin-bottom:8px;
 }
 
-.admin-links.a{
+.dashboard-opt{
     display: inline-block;
-    padding: 9px 16px;
-    border: 1px solid #333;
+    padding: 8px 16px;
+    border: 1px solid #83a1dc;
     border-radius: 5px;
     text-decoration: none;
-    color: #333;
+    color: #83a1dc;
 }
 
-.admin-links:hover {
-    background: #3a56b3;
+.dashboard-opt:hover {
+    background: #86ace4;
     color: #fff;
+}
+.booking-datas{
+    justify-content:baseline;
+    align-items: center;
+}
+.view-link {
+    display: inline-block;
+    padding:5px 20px;
+    border: 100% solid #333;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    align-content: center;
+}
+
+.view-link:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* VIew Bookings */
+
+.booking-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.booking-summary,
+.status-update-section {
+    margin-top: 20px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row span:first-child {
+    color: #666;
+}
+
+.status-form {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.status-form select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 180px;
 }

@@ -42,13 +42,18 @@ $users = $statement->fetchAll();
 </head>
 <body>
     <section style="padding:30px;">
+
+    <div class="dashboard-header">
         <h2>Manage Users</h2>
         <br>
         <?php if (empty($users)) { ?>
         <p>No users found.</p>
         <?php } else { ?>
-        <div style="overflow-x:auto;">
-            <table border="1" cellpadding="10" cellspacing="0" width="100%">
+        </div>
+        <div style="overflow-x:auto;"
+        class="table-responsive">
+            <table border="1" cellpadding="10" cellspacing="0" width="100%"
+            class="dashboard-table">
                 <thead>
                     <tr>
                     <th>ID</th>
@@ -117,7 +122,7 @@ $users = $statement->fetchAll();
 
         <br>
 
-    <a href="dashboard.php">
+    <a href="dashboard.php" class="dashboard-btn">
         Back to Admin Dashboard
     </a>
     

@@ -19,7 +19,7 @@ $success = '';
 
 if (isset($_POST['change_password'])) {
 
-    $currentPassword = $_POST['current_password'] ?? '';
+    
     $newPassword = $_POST['new_password'] ?? '';
     $confirmPassword = $_POST['confirm_password'] ?? '';
 
