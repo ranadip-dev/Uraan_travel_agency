@@ -86,7 +86,11 @@ $newEnquiries = (int) $enquiryCountStatement->fetchColumn();
     >
 </head>
 
-<body>
+<body class="admin-dashboard-page">
+
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
 
     <h2>Admin Dashboard</h2>
 
@@ -94,6 +98,7 @@ $newEnquiries = (int) $enquiryCountStatement->fetchColumn();
         Welcome,
         <strong><?= e($_SESSION['full_name']) ?></strong>
     </p>
+    </div>
 
     <section class="admin-stats">
 
@@ -121,7 +126,9 @@ $newEnquiries = (int) $enquiryCountStatement->fetchColumn();
         <h3><?= $newEnquiries ?></h3>
         <p>New Enquiries</p>
     </div>
+    </section>
 
+    <section>
     <div class="dashboard-actions">
 
         <a href="bookings.php" class="dashboard-opt">Manage Bookings</a>
@@ -142,9 +149,9 @@ $newEnquiries = (int) $enquiryCountStatement->fetchColumn();
         </a>
 
     </div>
+    </section>
 
-
-</section>
+</div>
 
 </body>
 

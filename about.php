@@ -10,8 +10,11 @@ require_once 'includes/functions.php';
 <section class="about">
 
 ```
-<div class="image">
-    <img src="assets/images/about-main.jpeg" alt="Travel Agency">
+<div class="about-image">
+    <img
+        src="assets/images/about-main.png"
+        alt="About Uraan Travel Agency"
+    >
 </div>
 
 <div class="content">

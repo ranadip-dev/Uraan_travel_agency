@@ -98,7 +98,7 @@ if (!$enquiry) {
     >
 </head>
 
-<body>
+<body class="admin-dashboard-page">
 
 <section>
 

@@ -55,7 +55,7 @@ $enquiries = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 </head>
 
-<body>
+<body class="admin-dashboard-page">
 
 <section style="padding: 30px;">
 

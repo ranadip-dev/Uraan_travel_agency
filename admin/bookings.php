@@ -70,7 +70,7 @@ $bookings = $statement->fetchAll();
 
 </head>
 
-<body>
+<body class="admin-dashboard-page">
 
 <div class="dashboard-container">
 

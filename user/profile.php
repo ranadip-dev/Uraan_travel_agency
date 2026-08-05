@@ -89,7 +89,7 @@ if (!$user) {
 
 </head>
 
-<body>
+<body class="user-dashboard-page">
 
 <div class="dashboard-container">
 

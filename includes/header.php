@@ -24,7 +24,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <header class="header">
     <a href="index.php" class="logo">
-        <i class="fas fa-paper-plane"></i> Travel Agency
+        <img src="../images/UTA_logo.png" alt="uraan_travel_agency">
     </a>
 
     <nav class="navbar">

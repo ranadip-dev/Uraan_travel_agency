@@ -70,7 +70,7 @@
 
 <section class="home-about">
     <div class="image">
-        <img src="assets/images/about-img.jpg" alt="About">
+        <img src="assets/images/about-img.png" alt="About">
     </div>
 
     <div class="content">

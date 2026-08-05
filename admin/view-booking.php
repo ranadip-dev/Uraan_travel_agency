@@ -118,7 +118,7 @@ $status = strtolower($booking['booking_status']);
 
 </head>
 
-<body>
+<body class="admin-dashboard-page">
 
 <div class="dashboard-container">
 

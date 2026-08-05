@@ -40,7 +40,7 @@ $users = $statement->fetchAll();
     <title>Manage Users</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="admin-dashboard-page">
     <section style="padding:30px;">
 
     <div class="dashboard-header">

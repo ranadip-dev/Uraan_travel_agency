@@ -106,7 +106,7 @@ if (isset($_POST['change_password'])) {
 
 </head>
 
-<body>
+<body class="user-dashboard-page">
 
 <div class="dashboard-container">
 
