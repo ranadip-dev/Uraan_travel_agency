@@ -8,8 +8,6 @@ require_once 'includes/functions.php';
 </div>
 
 <section class="about">
-
-```
 <div class="about-image">
     <img
         src="assets/images/about-main.png"

@@ -86,8 +86,7 @@ $bookings = $bookingStatement->fetchAll();
 </head>
 
 <body class="user-dashboard-page">
-
-<div class="dashboard-container">
+    <div class="dashboard-container">
 
     <div class="dashboard-header">
 

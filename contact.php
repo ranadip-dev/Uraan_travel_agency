@@ -83,7 +83,6 @@ if (isset($_POST['send_enquiry'])) {
 
 <section class="contact">
 
-```
 <div class="contact-info">
 
     <h3>Get in Touch</h3>
@@ -181,7 +180,6 @@ if ($success !== '') {
     class="btn">Send Massage</button>
 
 </form>
-```
 
 </section>
 

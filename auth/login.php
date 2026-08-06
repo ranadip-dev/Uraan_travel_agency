@@ -78,68 +78,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body class="auth-background">
-    <div class="dashboard-container">
-    <div class="dashboard-header">
+<body class="auth-page login-page">
 
-    <h2>Login to Your Account</h2>
+<div class="auth-wrapper">
 
-    <?php if (isset($_GET['registered'])): ?>
-        <p style="color: green;">
-            Registration completed successfully. Please log in.
-        </p>
-    <?php endif; ?>
+    <div class="auth-card">
 
-    <?php if (!empty($errors)): ?>
-        <ul style="color: red;">
-            <?php foreach ($errors as $error): ?>
-                <li><?= e($error) ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
-    </div>
+        <div class="auth-header">
+            <h2>Login to Your Account</h2>
+            <p>Welcome back to Uraan Travel Agency</p>
+        </div>
 
-    <div class="dashboard-section profile-section">
-            <form action="" method="POST">
+        <?php if (!empty($errors)) { ?>
 
-        <div class="form-group">
-            <label for="email">Email</label><br>
-        <input type="email" id="email" name="email" value="<?= e($email) ?>" required>
+            <div class="error-message">
+                <?php foreach ($errors as $error) { ?>
+                    <p><?= e($error) ?></p>
+                <?php } ?>
+            </div>
 
-        <br><br>
+        <?php } ?>
 
-        <label for="password">Password</label><br>
-        <div class="password-field">
-             <input
+        <form method="POST" class="auth-form">
+
+            <div class="form-group">
+
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">Password</label>
+
+                <div class="password-field">
+
+                    <input
                         type="password"
                         id="password"
                         name="password"
-                        required>
+                        required
+                    >
 
                     <button
                         type="button"
                         class="password-toggle"
                         data-target="password"
-                        aria-label="Show password">
+                        aria-label="Show password"
+                    >
                         👁
                     </button>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                name="login"
+                class="auth-btn"
+            >
+                Login
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account?
+            <a href="register.php">Register here</a>
         </div>
-
-        <br><br>
-
-        <button type="submit" class="primary-btn">Login</button>
-        </div>
-
-
-    </form>
-
-    <p>
-        Don't have an account?
-        <a href="register.php">Register here</a>
-            </p>
-            <script src="../assets/js/app.js"></script>
 
     </div>
+
+</div>
+
+<script src="../assets/js/app.js"></script>
+
 </body>
 
 </html>

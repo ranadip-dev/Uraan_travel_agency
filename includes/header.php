@@ -23,10 +23,12 @@ if (session_status() === PHP_SESSION_NONE) {
 <body>
 
 <header class="header">
-    <a href="index.php" class="logo">
-        <img src="../images/UTA_logo.png" alt="uraan_travel_agency">
-    </a>
-
+    <a href="/uraan_travel_agency/index.php" class="logo">
+    <img
+        src="/uraan_travel_agency/assets/images/logo.png"
+        alt="Uraan Travel Agency"
+    >
+</a>
     <nav class="navbar">
         <a href="index.php">Home</a>
         <a href="about.php">About</a>

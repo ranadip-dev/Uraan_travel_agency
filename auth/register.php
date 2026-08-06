@@ -97,82 +97,144 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body>
 
-    <div class=""dashboard-container>
-        <div class="dashboard-header">
+<body class="auth-page register-page">
+
+<div class="auth-wrapper">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
             <h2>Create Your Account</h2>
-
-    <?php
-    if (!empty($errors)) {
-        echo "<ul style='color:red;'>";
-
-        foreach ($errors as $error) {
-            echo "<li>" . e($error) . "</li>";
-        }
-
-        echo "</ul>";
-    }
-    ?>
+            <p>Join Uraan Travel Agency and start your journey</p>
         </div>
 
-        <div class="dashboard-section profile-section">
-    <div class=""form-group>
-            <form action="" method="POST">
+        <?php if (!empty($errors)) { ?>
 
-        <label>Full Name</label><br>
-        <input
-            type="text"
-            name="full_name"
-            value="<?= e($full_name) ?>"
-            required>
+            <div class="error-message">
+                <?php foreach ($errors as $error) { ?>
+                    <p><?= e($error) ?></p>
+                <?php } ?>
+            </div>
 
-        <br><br>
+        <?php } ?>
 
-        <label>Email</label><br>
-        <input
-            type="email"
-            name="email"
-            value="<?= e($email) ?>"
-            required>
+        <form method="POST" class="auth-form">
 
-        <br><br>
+            <div class="form-group">
 
-        <label>Phone Number</label><br>
-        <input
-            type="text"
-            name="phone"
-            value="<?= e($phone) ?>"
-            required>
+                <label for="full_name">Full Name</label>
 
-        <br><br>
+                <input
+                    type="text"
+                    id="full_name"
+                    name="full_name"
+                    required
+                >
 
-        <label>Password</label><br>
-        <input
-            type="password"
-            name="password"
-            required>
+            </div>
 
-        <br><br>
+            <div class="form-group">
 
-        <label>Confirm Password</label><br>
-        <input
-            type="password"
-            name="confirm_password"
-            required>
+                <label for="email">Email</label>
 
-        <br><br>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                >
 
-        <button type="submit" class="primary-btn">
-            Register
-        </button>
+            </div>
 
-    </form>
+            <div class="form-group">
+
+                <label for="phone">Phone Number</label>
+
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">Password</label>
+
+                <div class="password-field">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="password"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="confirm_password">
+                    Confirm Password
+                </label>
+
+                <div class="password-field">
+
+                    <input
+                        type="password"
+                        id="confirm_password"
+                        name="confirm_password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="confirm_password"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                name="register"
+                class="auth-btn"
+            >
+                Register
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+            Already have an account?
+            <a href="login.php">Login here</a>
+        </div>
 
     </div>
+
 </div>
 
-    </div>
+<script src="../assets/js/app.js"></script>
+
+</body>
 
 
 </body>

@@ -6,13 +6,12 @@ $stmt = $pdo->query("SELECT * FROM packages WHERE status = 'active' ORDER BY cre
 $packages = $stmt->fetchAll();
 ?>
 
-<div class="heading" style="background:url(assets/images/packages-bg.jpg) no-repeat;">
+<div class="heading" style="background:url(assets/images/bg-img.png) no-repeat;">
     <h1>Tour Packages</h1>
 </div>
 
 <section class="packages">
 
-```
 <h1 class="heading-title">Choose Your Next Destination</h1>
 
 <div class="box-container">

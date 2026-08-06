@@ -21,13 +21,12 @@ if(!$package){
 }
 ?>
 
-<div class="heading" style="background:url(assets/images/packages-bg.jpg) no-repeat;">
+<div class="heading" style="background:url(assets/images/bg-img.png) no-repeat;">
     <h1><?php echo htmlspecialchars($package['title']); ?></h1>
 </div>
 
 <section class="package-details">
 
-```
 <div class="image">
     <img src="assets/images/packages/<?php echo htmlspecialchars($package['image']); ?>" 
          alt="<?php echo htmlspecialchars($package['title']); ?>">

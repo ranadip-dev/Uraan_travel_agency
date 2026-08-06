@@ -94,67 +94,132 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="booking-page">
 
-    <h2>Book Your Package</h2>
+<div class="booking-container">
 
-    <h3><?= e($package['title']) ?></h3>
+    <div class="booking-card">
 
-    <p>
-        Price:
-        ₹<?= e((string) $package['price']) ?>
-    </p>
+        <div class="booking-heading">
 
-    <?php if (!empty($errors)): ?>
-        <ul style="color: red;">
-            <?php foreach ($errors as $error): ?>
-                <li><?= e($error) ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
+            <p class="booking-label">
+                Complete Your Reservation
+            </p>
 
-    <form method="POST">
+            <h2>Book Your Package</h2>
 
-        <label for="travel_date">Travel Date</label><br>
+            <h3><?= e($package['title']) ?></h3>
 
-        <input
-            type="date"
-            id="travel_date"
-            name="travel_date"
-            value="<?= e($travelDate) ?>"
-            required
-        >
+            <p class="booking-price">
+                ₹<?= number_format((float) $package['price'], 2) ?>
+                <span>per package</span>
+            </p>
 
-        <br><br>
+        </div>
 
-        <label for="persons">Number of Persons</label><br>
 
-        <input
-            type="number"
-            id="persons"
-            name="persons"
-            value="<?= e((string) $persons) ?>"
-            min="1"
-            required
-        >
+        <?php
+        if (!empty($errors)) {
+        ?>
 
-        <br><br>
+            <div class="error-message">
 
-        <label for="special_request">Special Request</label><br>
+                <?php
+                foreach ($errors as $error) {
+                ?>
 
-        <textarea
-            id="special_request"
-            name="special_request"
-            rows="4"
-        ><?= e($specialRequest) ?></textarea>
+                    <p><?= e($error) ?></p>
 
-        <br><br>
+                <?php
+                }
+                ?>
 
-        <button type="submit">
-            Confirm Booking
-        </button>
+            </div>
 
-    </form>
+        <?php
+        }
+        ?>
+
+
+        <form method="POST" class="booking-form">
+
+            <div class="form-group">
+
+                <label for="travel_date">
+                    Travel Date
+                </label>
+
+                <input
+                    type="date"
+                    id="travel_date"
+                    name="travel_date"
+                    value="<?= e($travelDate) ?>"
+                    min="<?= date('Y-m-d') ?>"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="persons">
+                    Number of Persons
+                </label>
+
+                <input
+                    type="number"
+                    id="persons"
+                    name="persons"
+                    value="<?= e((string) $persons) ?>"
+                    min="1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="special_request">
+                    Special Request
+                </label>
+
+                <textarea
+                    id="special_request"
+                    name="special_request"
+                    rows="5"
+                    placeholder="Let us know if you have any special requirements..."
+                ><?= e($specialRequest) ?></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Confirm Booking
+            </button>
+
+        </form>
+
+
+        <div class="booking-links">
+
+            <a href="package-details.php?id=<?= (int) $package['id'] ?>">
+                Back to Package
+            </a>
+
+            <a href="user/dashboard.php">
+                My Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 
