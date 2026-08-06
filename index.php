@@ -90,7 +90,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/packages/darjeeling.jpg" alt="">
+                <img src="assets/images/packages/darjeeling.jpg" alt="">
             </div>
             <div class="content">
                 <h3>Darjeeling Tour</h3>
@@ -101,7 +101,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/packages/manali.jpg" alt="">
+                <img src="assets/images/packages/manali.jpg" alt="">
             </div>
             <div class="content">
                 <h3>Manali Adventure</h3>
@@ -112,7 +112,7 @@
 
         <div class="box">
             <div class="image">
-                <img src="images/packages/goa.jpg" alt="">
+                <img src="assets/images/packages/goa.jpg" alt="">
             </div>
             <div class="content">
                 <h3>Goa Beach Trip</h3>
