@@ -77,110 +77,120 @@ if (isset($_POST['send_enquiry'])) {
 }
 ?>
 
-<div class="heading" style="background:url(assets/images/contact-bg.jpg) no-repeat;">
-    <h1>Contact Us</h1>
-</div>
-
-<section class="contact">
-
-<div class="contact-info">
-
-    <h3>Get in Touch</h3>
-
-    <div class="info-box">
-        <i class="fas fa-phone"></i>
-        <div>
-            <h4>Phone</h4>
-            <p>+91 9876543210</p>
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="heading" style="background:url(assets/images/contact-bg.jpg) no-repeat;">
+            <h1>Contact Us</h1>
         </div>
-    </div>
 
-    <div class="info-box">
-        <i class="fas fa-envelope"></i>
-        <div>
-            <h4>Email</h4>
-            <p>travel@example.com</p>
-        </div>
-    </div>
+            <section class="contact">
 
-    <div class="info-box">
-        <i class="fas fa-map-marker-alt"></i>
-        <div>
-            <h4>Office</h4>
-            <p>Siliguri, West Bengal, India</p>
-        </div>
-    </div>
+                <div class="contact-info">
 
-</div>
+                    <h3>Get in Touch</h3>
 
-<?php
+                    <div class="info-box">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 9876543210</p>
+                        </div>
+                    </div>
 
-foreach ($errors as $error) {
+                        <div class="info-box">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                            <h4>Email</h4>
+                            <p>travel@example.com</p>
+                            </div>
+                        </div>
 
-?>
+                            <div class="info-box">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Office</h4>
+                                    <p>Purba Bardhaman, West Bengal, India</p>
+                                </div>
+                            </div>
 
-<p style="color:red;">
-    <?= e($error) ?>
-</p>
+                </div>
 
-<?php
+                <div>
 
-}
+                    <?php
 
-if ($success !== '') {
+                    foreach ($errors as $error) {
 
-?>
+                    ?>
 
-<p style="color:green;font-weight:bold;">
-    <?= e($success) ?>
-</p>
+                    <p style="color:red;">
+                    <?= e($error) ?>
+                    </p>
 
-<?php
+                        <?php
 
-}
+                        }
 
-?>
+                        if ($success !== '') {
 
-<form class="contact-form" method="POST" action="#">
+                        ?>
 
-    <h3>Send a Message</h3>
-    <input
-    type="text"
-    name="name"
-    value="<?= e($name) ?>"
-    placeholder="Your Name"
-    required>
-    <input
-    type="email"
-    name="email"
-    value="<?= e($email) ?>"
-    placeholder="Your Email"
-    required>
-    <input
-    type="text"
-    name="phone"
-    value="<?= e($phone) ?>"
-    placeholder="Your phone"
-    required>
-    <input
-    type="text"
-    name="subject"
-    value="<?= e($subject) ?>"
-    placeholder="Subject"
-    required>
-    <textarea
-    name="message"
-    rows="6"
-    placeholder="Your Message"
-    required><?= e($message) ?></textarea>
+                        <p style="color:green;font-weight:bold;">
+                            <?= e($success) ?>
+                        </p>
 
-    <button
-    type="submit"
-    name="send_enquiry"
-    class="btn">Send Massage</button>
+                        <?php
 
-</form>
+                        }
 
-</section>
+                        ?>
 
-<?php include 'includes/footer.php'; ?>
+                </div>
+
+                <form class="contact-form" method="POST" action="#">
+
+                    <h3>Send a Message</h3>
+                    <input
+                    type="text"
+                    name="name"
+                    value="<?= e($name) ?>"
+                    placeholder="Your Name"
+                    required>
+                    <input
+                    type="email"
+                    name="email"
+                    value="<?= e($email) ?>"
+                    placeholder="Your Email"
+                    required>
+                    <input
+                    type="text"
+                    name="phone"
+                    value="<?= e($phone) ?>"
+                    placeholder="Your phone"
+                    required>
+                    <input
+                    type="text"
+                    name="subject"
+                    value="<?= e($subject) ?>"
+                    placeholder="Subject"
+                    required>
+                    <textarea
+                    name="message"
+                    rows="6"
+                    placeholder="Your Message"
+                    required><?= e($message) ?></textarea>
+
+                    <button
+                    type="submit"
+                    name="send_enquiry"
+                    class="btn">Send Massage</button>
+
+                </form>
+
+            </section>
+
+        <?php include 'includes/footer.php'; ?>
+
+    </body>
+</html>

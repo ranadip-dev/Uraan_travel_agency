@@ -12,7 +12,7 @@
             <h3>Contact Info</h3>
             <p><i class="fas fa-phone"></i> +91 9876543210</p>
             <p><i class="fas fa-envelope"></i> travel@example.com</p>
-            <p><i class="fas fa-map-marker-alt"></i> Siliguri, West Bengal</p>
+            <p><i class="fas fa-map-marker-alt"></i> Purba Bardhaman, West Bengal, India</p>
         </div>
 
         <div class="box">
